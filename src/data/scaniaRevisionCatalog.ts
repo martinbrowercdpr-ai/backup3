@@ -1,0 +1,375 @@
+export interface ScaniaBudgetItem {
+  code: string;
+  description: string;
+  quantity: number;
+  unitPrice: number;
+  totalPrice: number;
+  category: 'mercadorias' | 'lubrificantes' | 'servicos';
+  ncm?: string;
+}
+
+export interface ScaniaRevisionDetail {
+  id: 'REVISAO S' | 'REVISAO M' | 'REVISAO L' | 'REVISAO X';
+  title: string;
+  shortDescription: string;
+  fullPurpose: string;
+  budgetNumber: string;
+  clientName: string;
+  exampleVehiclePlate: string;
+  concessionaire: string;
+  totalCost: number;
+  partsCost: number;
+  lubricantsCost: number;
+  laborCost: number;
+  intervalRule: string;
+  cyclePositionExplanation: string;
+  items: ScaniaBudgetItem[];
+  whatItDoesSteps: string[];
+}
+
+export const SCANIA_REVISIONS_CATALOG: Record<string, ScaniaRevisionDetail> = {
+  'REVISAO S': {
+    id: 'REVISAO S',
+    title: 'Revisão S (Pequena / Standard de Motor)',
+    shortDescription: 'Manutenção preventiva periódica do motor, lubrificação de chassi e troca de kit de filtros.',
+    fullPurpose: 'Manutenção periódica preventiva com substituição total do óleo lubrificante de motor (41L sintético Scania LDF-3 10W40), kit de manutenção de filtros e engraxamento completo.',
+    budgetNumber: '217626 - Cliente',
+    clientName: 'RFG COMERCIO, TRANSPORTES E SERVICOS LTDA (Martin Brower)',
+    exampleVehiclePlate: 'BZF-5414',
+    concessionaire: 'COTRASA VEICULOS E SERVICOS LTDA (SICONnet Scania)',
+    totalCost: 3449.87,
+    partsCost: 1138.65,
+    lubricantsCost: 1603.26,
+    laborCost: 707.96,
+    intervalRule: 'Trava de ciclo de 40.000 KM (com alerta aos +20.000 KM para realizar a Revisão X)',
+    cyclePositionExplanation: 'Após realizar a Revisão S, o cavalo roda +20.000 KM até o alerta da REVISÃO X. Feita a Revisão X, roda mais +20.000 KM (totalizando a trava de 40.000 KM desde a S) para realizar a REVISÃO M.',
+    whatItDoesSteps: [
+      'Substituição de 41 litros de óleo lubrificante de motor Scania LDF-3 10W40',
+      'Troca do Kit de Manutenção Scania (filtros de óleo, combustível e anéis de vedação)',
+      'Engraxamento completo dos pontos de lubrificação do chassi, suspensão e 5ª roda com Graxa Scania',
+      'Inspeção visual preventiva de vazamentos, correias e conexões elétricas/pneumáticas',
+      'Reset do horímetro/odômetro de revisão nos módulos eletrônicos Scania',
+    ],
+    items: [
+      {
+        code: '01 2837180',
+        description: 'KIT DE MANUTENCAO',
+        quantity: 1,
+        unitPrice: 1138.65,
+        totalPrice: 1138.65,
+        category: 'mercadorias',
+      },
+      {
+        code: '45 2388304',
+        description: 'OLEO MOTOR LDF-3 10W40 TB 209',
+        quantity: 41,
+        unitPrice: 37.43,
+        totalPrice: 1534.63,
+        category: 'lubrificantes',
+      },
+      {
+        code: '45 2453971',
+        description: 'GRAXA DE USO GERAL SCANIA // 1',
+        quantity: 1,
+        unitPrice: 68.63,
+        totalPrice: 68.63,
+        category: 'lubrificantes',
+      },
+      {
+        code: '92 00000001',
+        description: 'REVISAO S (Mão de Obra Concessionária)',
+        quantity: 1,
+        unitPrice: 707.96,
+        totalPrice: 707.96,
+        category: 'servicos',
+      },
+    ],
+  },
+
+  'REVISAO M': {
+    id: 'REVISAO M',
+    title: 'Revisão M (Intermediária / Média)',
+    shortDescription: 'Revisão intermediária com elemento de filtro suplementar, troca de óleo 41L e diagnóstico.',
+    fullPurpose: 'Revisão preventiva média que adiciona elemento de filtro suplementar de alta retenção ao pacote standard de motor, óleo e engraxamento, com diagnóstico detalhado dos sistemas de injeção e arrefecimento.',
+    budgetNumber: '217627 - Cliente',
+    clientName: 'RFG COMERCIO, TRANSPORTES E SERVICOS LTDA (Martin Brower)',
+    exampleVehiclePlate: 'BZF-5414',
+    concessionaire: 'COTRASA VEICULOS E SERVICOS LTDA (SICONnet Scania)',
+    totalCost: 4247.16,
+    partsCost: 1794.35,
+    lubricantsCost: 1603.26,
+    laborCost: 849.55,
+    intervalRule: 'Trava de ciclo de 40.000 KM (com alerta aos +20.000 KM para realizar a Revisão X)',
+    cyclePositionExplanation: 'Após realizar a Revisão M, o cavalo roda +20.000 KM até o alerta da REVISÃO X. Feita a Revisão X, roda mais +20.000 KM (totalizando a trava de 40.000 KM desde a M) para realizar a REVISÃO L Completa.',
+    whatItDoesSteps: [
+      'Substituição de 41 litros de óleo de motor sintético Scania LDF-3 10W40',
+      'Troca do Elemento de Filtro suplementar Scania (ar/combustível avançado)',
+      'Substituição do Kit de Manutenção Scania (filtros primários e vedações)',
+      'Lubrificação geral com Graxa Scania na 5ª roda e mancais do cavalo mecânico',
+      'Mão de obra com diagnóstico eletrônico do sistema de injeção e arrefecimento',
+    ],
+    items: [
+      {
+        code: '01 2341657',
+        description: 'ELEMENTO DO FILTRO',
+        quantity: 1,
+        unitPrice: 655.70,
+        totalPrice: 655.70,
+        category: 'mercadorias',
+      },
+      {
+        code: '01 2837180',
+        description: 'KIT DE MANUTENCAO',
+        quantity: 1,
+        unitPrice: 1138.65,
+        totalPrice: 1138.65,
+        category: 'mercadorias',
+      },
+      {
+        code: '45 2388304',
+        description: 'OLEO MOTOR LDF-3 10W40 TB 209',
+        quantity: 41,
+        unitPrice: 37.43,
+        totalPrice: 1534.63,
+        category: 'lubrificantes',
+      },
+      {
+        code: '45 2453971',
+        description: 'GRAXA DE USO GERAL SCANIA // 1',
+        quantity: 1,
+        unitPrice: 68.63,
+        totalPrice: 68.63,
+        category: 'lubrificantes',
+      },
+      {
+        code: '92 00000001',
+        description: 'REVISAO M (Mão de Obra Concessionária)',
+        quantity: 1,
+        unitPrice: 849.55,
+        totalPrice: 849.55,
+        category: 'servicos',
+      },
+    ],
+  },
+
+  'REVISAO L': {
+    id: 'REVISAO L',
+    title: 'Revisão L (Grande / Completa Trem de Força)',
+    shortDescription: 'A MAIS COMPLETA! Troca de óleo de motor, câmbio, diferencial, todos os 8 filtros e graxas.',
+    fullPurpose: 'Revisão geral e completa de todo o conjunto mecânico (Full Powertrain). Substitui óleos de motor (41L), câmbio/transmissão (17L) e diferencial traseiro (13L), kit completo de filtros de cabine, ar, combustível e motor, e graxas especiais. É A ÚNICA QUE NÃO PRECISA DA REVISÃO X NO MEIO PORQUE ELA JÁ FAZ TUDO COMPLETO!',
+    budgetNumber: '217619(79290) - Cliente',
+    clientName: 'RFG COMERCIO, TRANSPORTES E SERVICOS LTDA (Martin Brower)',
+    exampleVehiclePlate: 'EVA-2941',
+    concessionaire: 'COTRASA VEICULOS E SERVICOS LTDA (SICONnet Scania)',
+    totalCost: 9473.89,
+    partsCost: 3670.00,
+    lubricantsCost: 2972.07,
+    laborCost: 2831.82,
+    intervalRule: 'Trava direta de 40.000 KM para a REVISÃO S (NÃO TEM REVISÃO X INTERMEDIÁRIA)',
+    cyclePositionExplanation: 'Como a Revisão L é completa e substitui todos os óleos (câmbio, diferencial, motor) e todos os filtros, ela NÃO faz o ciclo com Revisão X aos 20.000 KM! O cavalo roda a trava completa de 40.000 KM diretamente até a REVISÃO S.',
+    whatItDoesSteps: [
+      'Substituição de 17 litros de óleo de transmissão/câmbio 80W90 Tambor',
+      'Substituição de 13 litros de óleo da redução do eixo / diferencial traseiro 85W140',
+      'Substituição de 41 litros de óleo de motor sintético Scania LDF-3 10W40',
+      'Troca de 2 Filtros de Óleo de alta vazão',
+      'Troca do Filtro de Ar da Cabina do motorista',
+      'Troca do Elemento de Filtro principal',
+      'Substituição de 2 Kits de Filtros completos (combustível e ar)',
+      'Substituição de 2 Kits de Manutenção Scania',
+      'Aplicação de Graxa Especial em cubos e rolamentos + Graxa de uso geral',
+      'Execução completa do protocolo de manutenção pesada L Scania',
+    ],
+    items: [
+      {
+        code: '01 2002705',
+        description: 'FILTRO DE OLEO (2 unidades)',
+        quantity: 2,
+        unitPrice: 330.39,
+        totalPrice: 660.78,
+        category: 'mercadorias',
+        ncm: '84212990',
+      },
+      {
+        code: '01 2095029',
+        description: 'FILTRO DE AR DA CABINA',
+        quantity: 1,
+        unitPrice: 180.19,
+        totalPrice: 180.19,
+        category: 'mercadorias',
+        ncm: '84213990',
+      },
+      {
+        code: '01 2341657',
+        description: 'ELEMENTO DO FILTRO',
+        quantity: 1,
+        unitPrice: 655.70,
+        totalPrice: 655.70,
+        category: 'mercadorias',
+        ncm: '84219999',
+      },
+      {
+        code: '01 2399460',
+        description: 'FILTRO',
+        quantity: 1,
+        unitPrice: 75.46,
+        totalPrice: 75.46,
+        category: 'mercadorias',
+        ncm: '84212300',
+      },
+      {
+        code: '01 2608523',
+        description: 'KIT DE FILTROS',
+        quantity: 1,
+        unitPrice: 158.17,
+        totalPrice: 158.17,
+        category: 'mercadorias',
+        ncm: '84213990',
+      },
+      {
+        code: '01 2655854',
+        description: 'KIT DE FILTROS',
+        quantity: 1,
+        unitPrice: 382.55,
+        totalPrice: 382.55,
+        category: 'mercadorias',
+        ncm: '84212300',
+      },
+      {
+        code: '01 2837180',
+        description: 'KIT DE MANUTENCAO',
+        quantity: 1,
+        unitPrice: 1138.65,
+        totalPrice: 1138.65,
+        category: 'mercadorias',
+        ncm: '84212300',
+      },
+      {
+        code: '01 3248365',
+        description: 'KIT DE MANUTENCAO',
+        quantity: 1,
+        unitPrice: 418.50,
+        totalPrice: 418.50,
+        category: 'mercadorias',
+        ncm: '87083090',
+      },
+      {
+        code: '45 2003048',
+        description: 'ÓLEO TRANSMIS. 80W90 TAMBOR (17L)',
+        quantity: 17,
+        unitPrice: 46.48,
+        totalPrice: 790.16,
+        category: 'lubrificantes',
+        ncm: '27101932',
+      },
+      {
+        code: '45 2003072',
+        description: 'ÓLEO DA REDUÇÃO EIXO 85W140 TB (13L)',
+        quantity: 13,
+        unitPrice: 38.14,
+        totalPrice: 495.82,
+        category: 'lubrificantes',
+        ncm: '27101932',
+      },
+      {
+        code: '45 2388304',
+        description: 'OLEO MOTOR LDF-3 10W40 TB 209 (41L)',
+        quantity: 41,
+        unitPrice: 37.43,
+        totalPrice: 1534.63,
+        category: 'lubrificantes',
+        ncm: '27101932',
+      },
+      {
+        code: '45 2428584',
+        description: 'GRAXA ESPECIAL',
+        quantity: 1,
+        unitPrice: 82.83,
+        totalPrice: 82.83,
+        category: 'lubrificantes',
+        ncm: '27101999',
+      },
+      {
+        code: '45 2453971',
+        description: 'GRAXA DE USO GERAL SCANIA // 1',
+        quantity: 1,
+        unitPrice: 68.63,
+        totalPrice: 68.63,
+        category: 'lubrificantes',
+        ncm: '27101932',
+      },
+      {
+        code: '90 00175160',
+        description: 'EXECUTAR MANUTENCAO L (Serviço Pesado)',
+        quantity: 1,
+        unitPrice: 1887.88,
+        totalPrice: 1887.88,
+        category: 'servicos',
+      },
+      {
+        code: '92 00000001',
+        description: 'REVISAO L (Etapa 1)',
+        quantity: 1,
+        unitPrice: 471.97,
+        totalPrice: 471.97,
+        category: 'servicos',
+      },
+      {
+        code: '92 00000002',
+        description: 'REVISAO L (Etapa 2)',
+        quantity: 1,
+        unitPrice: 471.97,
+        totalPrice: 471.97,
+        category: 'servicos',
+      },
+    ],
+  },
+
+  'REVISAO X': {
+    id: 'REVISAO X',
+    title: 'Revisão X (Intermediária Preventiva de Filtros e Graxa)',
+    shortDescription: 'Inspeção rápida realizada aos +20.000 KM após Revisão S ou M para garantir o ciclo de 40.000 KM.',
+    fullPurpose: 'Revisão preventiva rápida intermediária. Substitui o Kit de Filtros de combustível e realiza engraxamento de pontos de desgaste com Graxa Scania. Previne danos a injetores e bomba antes da chegada da grande revisão aos 40.000 KM.',
+    budgetNumber: '217624 - Cliente',
+    clientName: 'RFG COMERCIO, TRANSPORTES E SERVICOS LTDA (Martin Brower)',
+    exampleVehiclePlate: 'BZF-5414',
+    concessionaire: 'COTRASA VEICULOS E SERVICOS LTDA (SICONnet Scania)',
+    totalCost: 1134.97,
+    partsCost: 783.16,
+    lubricantsCost: 68.63,
+    laborCost: 283.18,
+    intervalRule: 'Dispara aos +20.000 KM rodados após Revisão S ou Revisão M (Trava de 40.000 KM)',
+    cyclePositionExplanation: 'Quando o caminhão faz a Revisão S ou Revisão M, roda +20.000 KM e o sistema DISPARA ALERTA porque já tem que fazer a REVISÃO X! Feita a X, o caminhão roda mais +20.000 KM até completar a trava de 40.000 KM para a próxima grande revisão (M ou L).',
+    whatItDoesSteps: [
+      'Substituição do Kit de Filtros Scania (cód. 01 2878847)',
+      'Engraxamento completo do chassi e 5ª roda com Graxa Scania (cód. 45 2453971)',
+      'Mão de obra rápida de execução da manutenção preventiva X',
+      'Checklist rápido de segurança e proteção do trem de força',
+    ],
+    items: [
+      {
+        code: '01 2878847',
+        description: 'KIT DE FILTROS',
+        quantity: 1,
+        unitPrice: 783.16,
+        totalPrice: 783.16,
+        category: 'mercadorias',
+      },
+      {
+        code: '45 2453971',
+        description: 'GRAXA DE USO GERAL SCANIA // 1',
+        quantity: 1,
+        unitPrice: 68.63,
+        totalPrice: 68.63,
+        category: 'lubrificantes',
+      },
+      {
+        code: '90 00175117',
+        description: 'EXECUTAR MANUTENCAO X',
+        quantity: 1,
+        unitPrice: 283.18,
+        totalPrice: 283.18,
+        category: 'servicos',
+      },
+    ],
+  },
+};

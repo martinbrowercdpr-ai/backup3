@@ -1,0 +1,43 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128;
+    }
+
+    // Coleção de Veículos da Frota (Cavalos, Carretas e TKs)
+    match /vehicles/{vehicleId} {
+      allow get, list: if true;
+      allow create, update, delete: if isValidId(vehicleId);
+    }
+
+    // Histórico de Revisões e Manutenções Preventivas
+    match /maintenanceRecords/{recordId} {
+      allow get, list: if true;
+      allow create, update, delete: if isValidId(recordId);
+    }
+
+    // Logs de Auditoria e Alterações
+    match /changeLogs/{logId} {
+      allow get, list: if true;
+      allow create, update, delete: if isValidId(logId);
+    }
+
+    // Logs de Sincronização Automática com App de Abastecimento
+    match /abastecimentoSyncLogs/{syncId} {
+      allow get, list: if true;
+      allow create, update, delete: if isValidId(syncId);
+    }
+
+    // Verificação de conectividade e status
+    match /test/{testId} {
+      allow get, list: if true;
+      allow write: if isValidId(testId);
+    }
+
+    // Bloqueia qualquer outro caminho não especificado
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

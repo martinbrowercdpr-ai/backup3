@@ -1,0 +1,98 @@
+{
+  "entities": {
+    "Vehicle": {
+      "title": "Vehicle",
+      "description": "Veículo da frota (cavalo, carreta ou TK) com medição atual e parâmetros de revisão",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "plate": { "type": "string" },
+        "fleetNumber": { "type": "string" },
+        "type": { "type": "string" },
+        "currentMeter": { "type": "number" },
+        "meterUnit": { "type": "string" },
+        "lastMaintenanceDate": { "type": "string" },
+        "lastMaintenanceType": { "type": "string" },
+        "lastMaintenanceMeter": { "type": "number" },
+        "nextRevisionType": { "type": "string" },
+        "nextRevisionMeter": { "type": "number" },
+        "isTimeBasedRevision": { "type": "boolean" },
+        "nextRevisionDate": { "type": "string" },
+        "cavaloTaraKm": { "type": "number" },
+        "carretaTaraKm": { "type": "number" },
+        "status": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["plate", "type", "currentMeter", "meterUnit"]
+    },
+    "MaintenanceRecord": {
+      "title": "MaintenanceRecord",
+      "description": "Registro histórico de manutenção ou preventiva realizada",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "vehicleId": { "type": "string" },
+        "plate": { "type": "string" },
+        "vehicleType": { "type": "string" },
+        "date": { "type": "string" },
+        "revisionType": { "type": "string" },
+        "meterReading": { "type": "number" },
+        "workshop": { "type": "string" },
+        "nextScheduledMeter": { "type": "number" }
+      },
+      "required": ["plate", "vehicleType", "date", "revisionType", "meterReading"]
+    },
+    "ChangeLog": {
+      "title": "ChangeLog",
+      "description": "Registro de log de auditoria de alterações e sincronizações",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "dateStr": { "type": "string" },
+        "timeStr": { "type": "string" },
+        "type": { "type": "string" },
+        "plate": { "type": "string" },
+        "vehicleType": { "type": "string" },
+        "performedBy": { "type": "string" },
+        "action": { "type": "string" }
+      },
+      "required": ["plate", "action", "performedBy", "timestamp"]
+    },
+    "AbastecimentoSyncLog": {
+      "title": "AbastecimentoSyncLog",
+      "description": "Registro de recebimento de webhook ou sincronização de hodômetro do App de Abastecimento",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "plate": { "type": "string" },
+        "vehicleType": { "type": "string" },
+        "previousMeter": { "type": "number" },
+        "newMeter": { "type": "number" },
+        "sourceDatabaseId": { "type": "string" },
+        "targetDatabaseId": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "status": { "type": "string" }
+      },
+      "required": ["plate", "newMeter", "timestamp", "status"]
+    }
+  },
+  "firestore": {
+    "/vehicles/{vehicleId}": {
+      "schema": "Vehicle",
+      "description": "Documentos dos veículos da frota compartilhados por todos os usuários"
+    },
+    "/maintenanceRecords/{recordId}": {
+      "schema": "MaintenanceRecord",
+      "description": "Histórico de revisões sincronizado para todos os operadores"
+    },
+    "/changeLogs/{logId}": {
+      "schema": "ChangeLog",
+      "description": "Auditoria de modificações em tempo real"
+    },
+    "/abastecimentoSyncLogs/{syncId}": {
+      "schema": "AbastecimentoSyncLog",
+      "description": "Logs de sincronização recebidos do App de Abastecimento"
+    }
+  }
+}

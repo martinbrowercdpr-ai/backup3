@@ -1,0 +1,8 @@
+{
+  "name": "Remix Remix Gestão de Manutenção Preventiva - Frotas",
+  "description": "Sistema de controle e alertas preventivos para frotas de cavalos mecânicos, carretas e equipamentos de refrigeração TK com histórico e exportação de relatórios.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

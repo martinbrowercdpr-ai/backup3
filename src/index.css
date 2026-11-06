@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    background-color: #070b14;
+    color: #f1f5f9;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* Camada de fundo Martin Brower esmaecida/embaçada */
+.mb-bg-layer {
+  position: fixed;
+  inset: -15px;
+  background-image: url('/martin_brower_bg.png'), url('/martin_brower_bg.jpg');
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+  filter: blur(6px) brightness(0.40) saturate(1.12);
+  transform: scale(1.05);
+  pointer-events: none;
+  z-index: 0;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+/* Variações de intensidade do fundo controladas por classe */
+.bg-intensity-prominent .mb-bg-layer {
+  filter: blur(3.5px) brightness(0.52) saturate(1.15);
+}
+
+.bg-intensity-subtle .mb-bg-layer {
+  filter: blur(12px) brightness(0.26) saturate(1.05);
+}
+
+/* Máscara de vinheta e gradiente cinematográfico sobre o fundo */
+.mb-bg-overlay {
+  position: fixed;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 95% 60% at 50% -5%, rgba(30, 64, 175, 0.28), transparent 70%),
+    radial-gradient(ellipse 70% 50% at 85% 25%, rgba(217, 119, 6, 0.12), transparent 60%),
+    radial-gradient(ellipse 65% 55% at 15% 75%, rgba(14, 116, 144, 0.14), transparent 70%),
+    linear-gradient(180deg, rgba(8, 14, 26, 0.68) 0%, rgba(8, 14, 26, 0.78) 45%, rgba(5, 10, 20, 0.88) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Micro-padrão de grade industrial discreto */
+.mb-bg-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: radial-gradient(ellipse 85% 75% at 50% 30%, #000 35%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 30%, #000 35%, transparent 85%);
+  z-index: 2;
+}
+
+/* Estilos de painéis em vidro fosco executive (Glassmorphism) */
+.glass-panel {
+  background: rgba(13, 22, 40, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+}
+
+.glass-card {
+  background: rgba(15, 23, 42, 0.74);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35), inset 0 1px 0 0 rgba(255, 255, 255, 0.04);
+}
+
+.glass-card:hover {
+  background: rgba(22, 34, 60, 0.82);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.glass-input {
+  background: rgba(8, 14, 28, 0.78);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.glass-input:focus {
+  border-color: rgba(245, 158, 11, 0.7);
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.15);
+}
+
+/* Scrollbar refinada */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.6);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(51, 65, 85, 0.7);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.9);
+}
+
